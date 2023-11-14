@@ -47,7 +47,7 @@ export default function HeaderShop() {
         </NavbarItem>
         {Object.keys(auth).length > 0 && (
           <NavbarItem isActive>
-            <Link to={'#pedidos'} aria-current="page" className={`${pathname.includes('pedidos') ? 'font-bold' : 'font-normal'}`} color={pathname.includes('/pedidos') ? 'warning' : 'foreground'}>
+            <Link to={'/tienda/pedidos'} aria-current="page" className={`${pathname.includes('pedidos') ? 'font-bold' : 'font-normal'}`} color={pathname.includes('/pedidos') ? 'warning' : 'foreground'}>
               Mis pedidos
             </Link>
           </NavbarItem>
