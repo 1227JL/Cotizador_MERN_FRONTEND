@@ -76,7 +76,7 @@ export default function Carrito() {
                         <div className='bg-bg-300 p-5 w-full rounded-xl shadow-md'>
                             <div>
                                 <b className='text-xl text-foreground-700 uppercase'>Total Compra: </b>
-                                <p className={`${resumen.cantidad > 10 ? 'line-through text-foreground-300' : ''} text-warning-400 text-xl font-bold`}>${formatearPrecio(resumen.total)}</p>
+                                <p className={`${resumen.cantidad > 10 ? 'line-through text-foreground-300' : 'text-success-400 '} text-xl font-bold`}>${formatearPrecio(resumen.total)}</p>
                             </div>
                                 {resumen.cantidad > 10 && (
                                     <Descuento precio={resumen.total} porcentaje={5} />
@@ -94,7 +94,7 @@ function Descuento({ precio, porcentaje }) {
     const precioConDescuento = precio - descuento;
 
     return (
-        <p className='text-warning-400 text-xl font-bold'>${formatearPrecio(precioConDescuento)} <span className='text-small'>-5%</span></p>
+        <p className='text-success-400 text-xl font-bold'>${formatearPrecio(precioConDescuento)} <span className='text-small'>-5% de Descuento</span></p>
     );
 }
 

@@ -6,8 +6,34 @@ const TiendaContext = createContext()
 
 const TiendaProvider = ({children}) => {
 
+    const [pedidos, setPedidos] = useState([])
     const [carrito, setCarrito] = useState([])
     const [resumen, setResumen] = useState({})
+
+    useEffect(() => {
+        const obtenerPedidos = async () => {
+            try {
+                const token = localStorage.getItem('token')
+
+                if(!token){
+                    return
+                }
+
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+
+                const { data } = await clienteAxios('/pedidos', config)
+                setPedidos(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        return ()=>obtenerPedidos()
+    }, [])
 
     const añadirProducto = (producto) => {
         const existeProducto = carrito.some(productoCarrito => productoCarrito._id === producto._id)
@@ -66,6 +92,7 @@ const TiendaProvider = ({children}) => {
             value={{
                 añadirProducto,
                 carrito,
+                pedidos,
                 setCarrito,
                 resumen,
                 eliminarProductoCarrito,
